@@ -1,0 +1,2 @@
+# Fixing-yt-dlp-Cookie-Access-Errors-When-Downloading-YouTube-Playlists.
+When downloading YouTube playlists using yt-dlp, you might run into a frustrating error like this: ERROR: Could not copy Chrome cookie database. See https://github.com/yt-dlp/yt-dlp/issues/7271 ERROR: Download failed: failed to load cookies. This happens because yt-dlp tries to automatically access your Chrome browser’s cookies to handle t
