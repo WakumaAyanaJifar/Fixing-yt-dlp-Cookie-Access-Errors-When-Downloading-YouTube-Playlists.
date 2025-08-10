@@ -1,0 +1,38 @@
+import yt_dlp
+
+# Youtube channel URL (or channel ID)
+channel_url = 'https://www.youtube.com/watch?v=JnGFtX4auKM&list=PL-xjuH-OjUPsjN5oFEy82reRaFBeiONoc'  # https://www.youtube.com/@OBNoromiyaa
+
+output_path = './downloads/%(title)s.%(ext)s'
+
+# yt-dlp options
+ydl_opts = {
+    'format': 'bestaudio/best',
+    'outtmpl': output_path,
+    'download_archive': 'downloaded.txt',
+    'continue_dl': True,
+    'retries': 2,
+    'postprocessors': [{
+        'key': 'FFmpegExtractAudio',
+        'preferredcodec': 'wav',
+        'preferredquality': '0',
+    }],
+    'postprocessor_args': [
+        '-ar', '24000',
+        '-ac', '1'
+    ],
+    'extract_flat': False,
+    'noplaylist': False,
+    'ignoreerrors': True,
+    'quiet': False,
+    'no_warnings': True,
+    'cookiefile': 'www.youtube.com_cookies.txt',   # add your cookies file here and it should be in the same folder where you intend to download your vid.
+    'player_client': 'web',  # force web player client (avoid TV app errors)
+    'headers': {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
+    },
+}
+
+# Download process
+with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+    ydl.download([channel_url])
